@@ -3,7 +3,7 @@ module.exports = (sequelize, DataTypes) => {
   const TipeItem = sequelize.define('TipeItem', {
     namaTipe: DataTypes.STRING
   }, {});
-  TipeItem.associate = function(models) {
+  TipeItem.associate = function (models) {
     // associations can be defined here
     TipeItem.belongsTo(models.item_product, {
       foreignKey: 'id',

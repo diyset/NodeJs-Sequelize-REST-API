@@ -27,15 +27,22 @@ module.exports = {
       userId: {
         type: Sequelize.INTEGER,
         allowNull:false,
-        onDelte: 'CASCADE',
+        onDelete: 'CASCADE',
         references:{
           model: 'users',
           key: 'id',
           as: 'userId'
         }
       },
-      status_order: {
-        type: Sequelize.STRING
+      codeStatus: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        onDelete: 'CASCADE',
+        references: {
+          model: 'status_orders',
+          key: 'id',
+          as: 'codeStatus'
+        }
       },
       createdAt: {
         allowNull: false,

@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     quantity: DataTypes.INTEGER,
     tanggal_order: DataTypes.DATE,
     userId: DataTypes.INTEGER,
-    status_order: DataTypes.STRING
+    codeStatus: DataTypes.INTEGER
   }, {});
   ListOrder.associate = function(models) {
     // associations can be defined here
@@ -13,6 +13,11 @@ module.exports = (sequelize, DataTypes) => {
       foreignKey: 'userId',
       targetKey: 'id',
       as: 'users'
+    })
+    ListOrder.belongsTo(models.status_order,{
+      foreignKey:'codeStatus',
+      targetKey: 'id',
+      as: 'statusOrder'
     })
   };
   return ListOrder;

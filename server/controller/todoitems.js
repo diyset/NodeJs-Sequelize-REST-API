@@ -1,27 +1,28 @@
 const TodoItem = require('../models').TodoItem
 
-module.exports= {
-    create(req,res) {
+module.exports = {
+    create(req, res) {
 
-       var message = "";
-       function validate(){
-            if(req.body.complete == ""){
+        var message = "";
+
+        function validate() {
+            if (!req.body.complete) {
                 message = 'Complete Is Not Null';
                 return false;
-            } else if(req.body.content == null){
+            } else if (!req.body.content) {
                 message = "Content Is Not Null";
                 return false;
-            } else if(req.body.todoId == null) {
+            } else if (!req.body.todoId) {
                 message = "Todo Id Is Not Null"
                 return false;
             }
             return true;
         }
-        if(!validate()){
+        if (!validate()) {
             return res.status(400).send({
-                code:90,
-                error:true,
-                message:message
+                code: 90,
+                error: true,
+                message: message
             })
         }
         return TodoItem
@@ -30,13 +31,13 @@ module.exports= {
                 content: req.body.content,
                 todoId: req.params.todoId
             })
-            .then(todoItem=>{
+            .then(todoItem => {
                 res.status(200).send({
-                    code:"00",
-                    error:false,
+                    code: "00",
+                    error: false,
                     data: todoItem
                 })
             })
-            .catch(error=>res.status(400).send(error))
+            .catch(error => res.status(400).send(error))
     }
 }
